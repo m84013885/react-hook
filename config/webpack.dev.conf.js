@@ -3,7 +3,6 @@ const webpackMerge = require('webpack-merge')
 const path = require('path')
 const webpack = require('webpack')
 const process = require('process')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const nodeModuleDir = path.resolve(process.cwd(), 'node_module')
 const appDir = path.resolve(process.cwd(), 'app')
@@ -29,18 +28,18 @@ const config = webpackMerge(commonConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({ __DEV__: 'true' }),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      filename: `index.html`,
-      title: 'demo',
-      template: path.join(appDir, 'app.html'),
-      minify: {
-        collapseWhitespace: true,
-        conservativeCollapse: true
-      },
-      inject: true,
-      chunks: ['app']
-    })
+    new webpack.HotModuleReplacementPlugin()
+    // new HtmlWebpackPlugin({
+    //   filename: `index.html`,
+    //   title: 'demo',
+    //   template: path.join(appDir, 'app.html'),
+    //   minify: {
+    //     collapseWhitespace: true,
+    //     conservativeCollapse: true
+    //   },
+    //   inject: true,
+    //   chunks: ['app']
+    // })
   ],
   module: {
     rules: [
@@ -68,4 +67,5 @@ const config = webpackMerge(commonConfig, {
     ]
   }
 })
+
 module.exports = config
