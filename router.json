@@ -12,5 +12,7 @@
             "name": "example",
             "template": "example"
         }
-    ]
+    ],
+    "dev":[],
+    "dep":["manifest", "vendors"]
 }

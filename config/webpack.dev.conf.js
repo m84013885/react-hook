@@ -1,4 +1,5 @@
 const commonConfig = require('./webpack.common.config')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 const path = require('path')
 const webpack = require('webpack')
@@ -9,6 +10,8 @@ const appDir = path.resolve(process.cwd(), 'app')
 const ip = require('ip')
 const port = 8078
 const host = ip.address()
+
+const { routers } = require('../router.json')
 
 const config = webpackMerge(commonConfig, {
   mode: 'development',
@@ -21,7 +24,6 @@ const config = webpackMerge(commonConfig, {
     proxy: {
       '/v1': {
         target: 'http://www.app-remix.com',
-        // target: 'https://test1.app-remix.com',
         changeOrigin: true
       }
     }
@@ -29,17 +31,6 @@ const config = webpackMerge(commonConfig, {
   plugins: [
     new webpack.DefinePlugin({ __DEV__: 'true' }),
     new webpack.HotModuleReplacementPlugin()
-    // new HtmlWebpackPlugin({
-    //   filename: `index.html`,
-    //   title: 'demo',
-    //   template: path.join(appDir, 'app.html'),
-    //   minify: {
-    //     collapseWhitespace: true,
-    //     conservativeCollapse: true
-    //   },
-    //   inject: true,
-    //   chunks: ['app']
-    // })
   ],
   module: {
     rules: [
@@ -66,6 +57,22 @@ const config = webpackMerge(commonConfig, {
       }
     ]
   }
+})
+routers.map((item) => {
+  const {
+    name,
+    template
+  } = item
+  const tempSrc = path.resolve(appDir, `./router/${template}/index.html`)
+  const plugin = new HtmlWebpackPlugin({
+    filename: `${template}`,
+    title: name,
+    template: tempSrc,
+    inject: true,
+    chunks: [template]
+  })
+  config.entry[template] = [path.resolve(appDir, `./router/${template}/index.js`)]
+  config.plugins.push(plugin)
 })
 
 module.exports = config

@@ -5,6 +5,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const process = require('process')
 const webpack = require('webpack')
@@ -13,6 +14,8 @@ const nodeModuleDir = path.resolve(process.cwd(), 'node_module')
 const appDir = path.resolve(process.cwd(), 'app')
 const outputPath = path.resolve(process.cwd(), 'build')
 const assestPathName = 'assest'
+
+const { routers } = require('../router.json')
 
 const config = webpackMerge(commonConfig, {
   mode: 'production',
@@ -61,17 +64,6 @@ const config = webpackMerge(commonConfig, {
     new webpack.DefinePlugin({ __DEV__: 'false' }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: `${assestPathName}/[name].[chunkhash:5].css` }),
-    // new HtmlWebpackPlugin({
-    //   filename: `index.html`,
-    //   title: 'demo',
-    //   template: path.join(appDir, 'app.html'),
-    //   minify: {
-    //     collapseWhitespace: true,
-    //     conservativeCollapse: true
-    //   },
-    //   inject: true,
-    //   chunks: ['manifest', 'vendors', 'globals', 'app']
-    // }),
     new InlineManifestWebpackPlugin('manifest')
   ],
   module: {
@@ -105,4 +97,21 @@ const config = webpackMerge(commonConfig, {
     ]
   }
 })
+routers.map((item) => {
+  const {
+    name,
+    template
+  } = item
+  const tempSrc = path.resolve(appDir, `./router/${template}/index.html`)
+  const plugin = new HtmlWebpackPlugin({
+    filename: `${template}.html`,
+    title: name,
+    template: tempSrc,
+    inject: true,
+    chunks: ['manifest', 'vendors', template]
+  })
+  config.entry[template] = [path.resolve(appDir, `./router/${template}/index.js`)]
+  config.plugins.splice(-1, 0, plugin)
+})
+
 module.exports = config
