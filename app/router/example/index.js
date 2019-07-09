@@ -1,4 +1,3 @@
-import 'whatwg-fetch'
 import React from 'react'
 import './index.css'
 import { render } from 'react-dom'
