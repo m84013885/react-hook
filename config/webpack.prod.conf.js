@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const process = require('process')
 const webpack = require('webpack')
@@ -64,6 +65,9 @@ const config = webpackMerge(commonConfig, {
     new webpack.DefinePlugin({ __DEV__: 'false' }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: `${assestPathName}/[name].[chunkhash:5].css` }),
+    new CopyPlugin([
+      { from: path.resolve(process.cwd(), 'dll/dll.js'), to: path.join(outputPath, assestPathName) },
+    ]),
     new InlineManifestWebpackPlugin('manifest')
   ],
   module: {
@@ -113,7 +117,7 @@ routers.map((item) => {
   const tempSrc = path.resolve(appDir, `./router/${template}/index.html`)
   const plugin = new HtmlWebpackPlugin({
     filename: `${template}.html`,
-    title: name,
+    title: `${assestPathName}/dll.js`,
     template: tempSrc,
     inject: true,
     chunks: ['manifest', 'vendors', template]

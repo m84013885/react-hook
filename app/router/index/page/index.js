@@ -1,6 +1,7 @@
 import style from './index.css'
 import axios from 'axios'
 import md5 from 'md5'
+import React from 'react'
 import ScrollView from './scroll'
 
 const Main = () => {

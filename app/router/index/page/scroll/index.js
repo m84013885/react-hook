@@ -1,4 +1,5 @@
 
+import React from 'react'
 import { useState, useEffect, useRef } from "react"
 import BScroll from "better-scroll"
 import style from './index.css'
