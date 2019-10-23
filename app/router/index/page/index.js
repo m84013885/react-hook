@@ -3,6 +3,7 @@ import axios from 'axios'
 import md5 from 'md5'
 import React from 'react'
 import ScrollView from './scroll'
+import title from '../../../images/title.common.png'
 
 const Main = () => {
   // axios.post('https://huangqm.xyz/php/sig.php', {
@@ -18,6 +19,8 @@ const Main = () => {
   //   })
   return (
     <ScrollView>
+      <div className={style.test} style={{backgroundImage:`url(${title})`}}></div>
+      <div className={style.test1}></div>
       <div>1</div>
       <div>2</div>
       <div>3</div>

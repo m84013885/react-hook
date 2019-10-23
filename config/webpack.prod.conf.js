@@ -93,7 +93,7 @@ const config = webpackMerge(commonConfig, {
         exclude: [nodeModuleDir]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: new RegExp(`^(?!.*\\.common).*\\.(png|svg|jpg|gif)`),
         use: [{
           loader: 'url-loader',
           options: {
@@ -105,7 +105,21 @@ const config = webpackMerge(commonConfig, {
         }],
         include: [appDir],
         exclude: [nodeModuleDir]
-      }
+      },
+      {
+        test: new RegExp(`^(.*\\.common).*\\.(png|svg|jpg|gif)`),
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 2500,
+            outputPath: assestPathName,
+            // 和 JS / CSS 在统一路径下·
+            publicPath: assestPathName
+          }
+        }],
+        include: [appDir],
+        exclude: [nodeModuleDir]
+      },
     ]
   }
 })
