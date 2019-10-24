@@ -9,6 +9,10 @@
             "template": "test"
         },
         {
+            "name": "circle",
+            "template": "circle"
+        },
+        {
             "name": "example",
             "template": "example"
         }

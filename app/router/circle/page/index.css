@@ -1,0 +1,10 @@
+.circle{
+  width: 750rpx;
+  height: 750rpx;
+}
+.rotate{
+  width: 500rpx;
+  height: 500rpx;
+  /* border-radius: 50%; */
+  background-color: #dddddd;
+}
