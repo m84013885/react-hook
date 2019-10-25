@@ -2,6 +2,7 @@ import style from './index.css'
 
 import React, { useState, useEffect, useReducer } from 'react'
 
+import Circle from './circle'
 const Main = () => {
   // useState的简单使用
   const [canvasDom, setCanvasDom] = useState(null)
@@ -77,6 +78,20 @@ const Main = () => {
       <canvas className={style.circle} ref={canvasDOM}></canvas>
       <div className={style.rotate} ref={rotateDOM}></div>
       <button onClick={() => { setFLAG(true) }}>START</button>
+      <div className={style.test}>
+        <Circle current={0.1}
+          linecap="round"
+          startPoint={180}
+          showText={false}
+          gradientDirection={"horizontal"}
+          gradient={
+            [
+              { offset: 0, color: "rgb(252,193,122)", opacity: 1 },
+              { offset: 50, color: "rgb(234,137,104)", opacity: 1 },
+            ]
+          } />
+      </div>
+
     </React.Fragment>
   )
 }
