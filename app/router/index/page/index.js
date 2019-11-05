@@ -4,6 +4,7 @@ import md5 from 'md5'
 import React from 'react'
 import ScrollView from './scroll'
 import title from '../../../images/title.common.png'
+import Toast from './toast'
 
 const Main = () => {
   // axios.post('https://huangqm.xyz/php/sig.php', {
@@ -34,6 +35,7 @@ const Main = () => {
       <div>3</div>
       <div>3</div>
       <div>3</div>
+      <Toast/>
     </ScrollView>
   )
 }
