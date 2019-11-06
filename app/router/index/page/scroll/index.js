@@ -13,6 +13,7 @@ const ScrollView = ((props) => {
         const scroll = new BScroll(scrollContaninerRef.current, {
             scrollX: false,
             scrollY: true,
+            click: true,
             bounce: {
                 top: true,
                 bottom: true
