@@ -1,7 +1,12 @@
-import { useContext } from 'react'
+import React,{ useContext } from 'react'
 
-const Content1 = (state) => {
-    const test = useContext(state.test)
+import {UserContext} from './createContent'
+
+const Content1 = () => {
+    const test = useContext(UserContext)
+
+    console.log(test)
+
     return <div>{test.number}</div>
 }
 export default Content1

@@ -1,6 +1,10 @@
-import { useContext } from 'react'
-const Content2 = (state) => {
-    const test = useContext(state.test)
+import React,{ useContext } from 'react'
+
+import {UserContext} from './createContent'
+
+const Content2 = () => {
+    const test = useContext(UserContext)
+
     console.log(test)
 
     const handleOnClick = () => {

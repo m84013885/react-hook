@@ -1,17 +1,19 @@
 import Content1 from './content1'
 import Content2 from './content2'
-import { createContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { UserContext } from './createContent'
 
 const Main = () => {
-  const UserContext = new createContext()
+  // const UserContext = new createContext()
   const [number, setNumber] = useState(3)
   useEffect(() => {
     console.log(6)
   }, [number])
   return (
     <UserContext.Provider value={{ number, setNumber }}>
-      <Content1 test={UserContext} />
-      <Content2 test={UserContext} />
+      <Content1 />
+      <Content2 />
     </UserContext.Provider>
   )
 
