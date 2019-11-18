@@ -2,6 +2,7 @@
 ### 新增公共组件pace(加载进度条)
 ### 布局更为合理
 ### 引入whatwg-fetch,解决兼容性问题
+### 引入react-simple-animate动画库
 
 ##2019-11-5
 ### 完善简单的toast
