@@ -7,7 +7,7 @@ const SwiperItem = (state) => {
             observeParents: true,
             observer: true,
             autoplay: {
-                delay: 3000,
+                delay: 99999,
                 stopOnLastSlide: false,
                 disableOnInteraction: false,
             }

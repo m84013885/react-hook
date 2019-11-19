@@ -1,5 +1,4 @@
 import style from './index.css'
-
 import React, { useState } from 'react'
 
 const Mask = (state) => {

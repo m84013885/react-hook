@@ -9,7 +9,7 @@ let timerEnd = null
 const Toast = () => {
   const [text, setText] = useState('')
   window.setToast = setText
-  const [anima, setAnima] = useState(0)
+  const [anima, setAnima] = useState(false)
   const clearTimer = () => {
     clearTimeout(timerStart)
     clearTimeout(timerEnd)
@@ -19,9 +19,9 @@ const Toast = () => {
   useEffect(() => {
     if (text !== '') {
       clearTimer()
-      setAnima(1)
+      setAnima(true)
       timerStart = setTimeout(() => {
-        setAnima(0)
+        setAnima(false)
       }, 3000)
       timerEnd = setTimeout(() => {
         setText('')

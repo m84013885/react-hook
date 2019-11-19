@@ -1,6 +1,4 @@
-
-import React from 'react'
-import { useState, useEffect, useRef } from "react"
+import React,{ useState, useEffect, useRef } from "react"
 import BScroll from "better-scroll"
 import style from './index.css'
 
@@ -14,6 +12,7 @@ const ScrollView = ((props) => {
             scrollX: false,
             scrollY: true,
             click: true,
+            tap:true,
             bounce: {
                 top: true,
                 bottom: true
