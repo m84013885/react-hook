@@ -1,7 +1,10 @@
 import style from './index.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-const SwiperTest = ({ children, width = window.outerWidth }) => {
+let timer = null
+let times = 3000
+
+const SwiperTest = ({ children, width = window.outerWidth, autoplay }) => {
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
     const [touchMove, setTouchMove] = useState(null)
@@ -9,34 +12,42 @@ const SwiperTest = ({ children, width = window.outerWidth }) => {
     const [animaOpen, setAnimaOpen] = useState(false)
     const [position, setPosition] = useState(0)
     const [index, setIndex] = useState(0)
-
+    const move = () => {
+        if (children.length - 1 !== index) {
+            setIndex(index + 1)
+            setAnimaOpen(true)
+            setTouch(0)
+            setPosition(position - width)
+            setTimeout(() => {
+                setAnimaOpen(false)
+            }, 200)
+        } else if (index !== 0) {
+            setIndex(index - 1)
+            setAnimaOpen(true)
+            setTouch(0)
+            setPosition(position + width)
+            setTimeout(() => {
+                setAnimaOpen(false)
+            }, 200)
+        }
+    }
     const bindleTouchMove = (e) => {
         setTouchMove(e.targetTouches[0].pageX)
         setTouch(touchMove - touchStart)
     }
     const bindleTouchStart = (e) => {
+        clearInterval(timer)
         setTouchStart(e.targetTouches[0].pageX)
         setTouchMove(e.targetTouches[0].pageX)
     }
     const bindleTouchEnd = (e) => {
+        setAutoplayTime(autoplayTime + 1)
         if (Math.abs(touch) > 50) {
             if (touch < 0 && children.length - 1 !== index) {
-                setIndex(index + 1)
-                setAnimaOpen(true)
-                setTouch(0)
-                setPosition(position - width)
-                setTimeout(() => {
-                    setAnimaOpen(false)
-                }, 200)
+                move()
                 return
             } else if (touch > 0 && index !== 0) {
-                setIndex(index - 1)
-                setAnimaOpen(true)
-                setTouch(0)
-                setPosition(position + width)
-                setTimeout(() => {
-                    setAnimaOpen(false)
-                }, 200)
+                move()
                 return
             }
         }
@@ -45,7 +56,6 @@ const SwiperTest = ({ children, width = window.outerWidth }) => {
         setTimeout(() => {
             setAnimaOpen(false)
         }, 200)
-
     }
     const has3d = () => {
         if (!window.getComputedStyle) {
@@ -94,6 +104,30 @@ const SwiperTest = ({ children, width = window.outerWidth }) => {
             }
         }
     }
+    const useInterval = (callback, delay) => {
+        const savedCallback = useRef()
+        // 保存新回调
+        useEffect(() => {
+            savedCallback.current = callback
+        })
+        // 建立 interval
+        useEffect(() => {
+            function tick() {
+                savedCallback.current()
+            }
+            if (delay !== null) {
+                timer = setInterval(tick, delay)
+                return () => clearInterval(timer)
+            }
+        }, [delay])
+    }
+    const [autoplayTime, setAutoplayTime] = useState(autoplay)
+    useInterval(() => {
+        move()
+    }, autoplayTime)
+    useEffect(() => {
+
+    }, [index])
     return (
         <div className={style.swiperContainer} style={{ width: width + 'px' }}
             onTouchMove={bindleTouchMove}

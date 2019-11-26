@@ -7,20 +7,29 @@ const SwiperItem = (state) => {
             observeParents: true,
             observer: true,
             autoplay: {
-                delay: 99999,
+                delay: 3000,
                 stopOnLastSlide: false,
                 disableOnInteraction: false,
             }
         })
     }, [])
     const renderChildren = () => {
-        const swiperDom = state.children.map((c, i) => {
+        let swiperDom
+        if (state.children.length) {
+            swiperDom = state.children.map((c, i) => {
+                return (
+                    <div className="swiper-slide" key={i}>
+                        {c}
+                    </div>
+                )
+            })
+        } else {
             return (
-                <div className="swiper-slide" key={i}>
-                    {c}
+                <div className="swiper-slide">
+                    {state.children}
                 </div>
             )
-        })
+        }
         return swiperDom
     }
     return (

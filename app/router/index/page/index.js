@@ -17,10 +17,14 @@ const Main = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <SwiperTest>
+        <SwiperTest autoplay={3000}>
           <div>swiper1</div>
           <div>swiper2</div>
         </SwiperTest>
+        <SwiperItem>
+          <div>21</div>
+          <div>11</div>
+        </SwiperItem>
         {/* <div className={'none'}>123</div>
         <SwiperItem>
           <div>21</div>
