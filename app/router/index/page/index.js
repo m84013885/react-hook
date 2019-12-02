@@ -8,12 +8,6 @@ import SwiperTest from './components/swiperItem'
 
 const Main = () => {
   const [mask, setMask] = useState('')
-  const [swiperNum, setSwiperNum] = useState(5)
-  useEffect(() => {
-    setTimeout(() => {
-      setSwiperNum(6)
-    }, 1000)
-  }, [])
   return (
     <React.Fragment>
       <ScrollView>
@@ -21,10 +15,10 @@ const Main = () => {
           <div>swiper1</div>
           <div>swiper2</div>
         </SwiperTest>
-        <SwiperItem>
+        {/* <SwiperItem>
           <div>21</div>
           <div>11</div>
-        </SwiperItem>
+        </SwiperItem> */}
         {/* <div className={'none'}>123</div>
         <SwiperItem>
           <div>21</div>

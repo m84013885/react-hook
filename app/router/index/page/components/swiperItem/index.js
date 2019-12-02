@@ -2,30 +2,49 @@ import style from './index.css'
 import React, { useState, useEffect, useRef } from 'react'
 
 let timer = null
-let times = 3000
 
-const SwiperTest = ({ children, width = window.outerWidth, autoplay }) => {
+const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true }) => {
+    const childrenLength = loop ? children.length + 2 : children.length
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
     const [touchMove, setTouchMove] = useState(null)
     const [touch, setTouch] = useState(0)
     const [animaOpen, setAnimaOpen] = useState(false)
-    const [position, setPosition] = useState(0)
-    const [index, setIndex] = useState(0)
-    const move = () => {
-        if (children.length - 1 !== index) {
+    const [position, setPosition] = useState(loop ? -width : 0)
+    const [index, setIndex] = useState(loop ? 1 : 0)
+    const autoMove = () => {
+        if (childrenLength - 1 !== index) {
             setIndex(index + 1)
+            setPosition(position - width)
             setAnimaOpen(true)
             setTouch(0)
-            setPosition(position - width)
             setTimeout(() => {
                 setAnimaOpen(false)
             }, 200)
         } else if (index !== 0) {
             setIndex(index - 1)
+            setPosition(position + width)
             setAnimaOpen(true)
             setTouch(0)
+            setTimeout(() => {
+                setAnimaOpen(false)
+            }, 200)
+        }
+    }
+    const move = () => {
+        if (touch < 0 && childrenLength - 1 !== index) {
+            setIndex(index + 1)
+            setPosition(position - width)
+            setAnimaOpen(true)
+            setTouch(0)
+            setTimeout(() => {
+                setAnimaOpen(false)
+            }, 200)
+        } else if (touch > 0 && index !== 0) {
+            setIndex(index - 1)
             setPosition(position + width)
+            setAnimaOpen(true)
+            setTouch(0)
             setTimeout(() => {
                 setAnimaOpen(false)
             }, 200)
@@ -41,12 +60,9 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay }) => {
         setTouchMove(e.targetTouches[0].pageX)
     }
     const bindleTouchEnd = (e) => {
-        setAutoplayTime(autoplayTime + 1)
-        if (Math.abs(touch) > 50) {
-            if (touch < 0 && children.length - 1 !== index) {
-                move()
-                return
-            } else if (touch > 0 && index !== 0) {
+        setAutoplayTime(setAutoplayTime >= autoplay ? autoplayTime + 1 : autoplayTime - 1)
+        if (Math.abs(touch) > 10) {
+            if ((touch < 0 && childrenLength - 1 !== index) || (touch > 0 && index !== 0)) {
                 move()
                 return
             }
@@ -121,13 +137,48 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay }) => {
             }
         }, [delay])
     }
-    const [autoplayTime, setAutoplayTime] = useState(autoplay)
+    // console.log(autoplay)
+    const [autoplayTime, setAutoplayTime] = useState(autoplay || 86400000)
     useInterval(() => {
-        move()
+        autoMove()
     }, autoplayTime)
     useEffect(() => {
-
+        if (loop) {
+            if (index === 0) {
+                setTimeout(() => {
+                    setIndex(children.length)
+                    setPosition(-(width * children.length))
+                }, 200)
+            } else if (index === children.length + 1) {
+                setTimeout(() => {
+                    setIndex(1)
+                    setPosition(-width)
+                }, 200)
+            }
+        }
     }, [index])
+    const _render = (children) => {
+        const childrens = children.map((c, i) => {
+            return (
+                <div style={{ width: width + 'px' }} key={i}>
+                    {c}
+                </div>
+            )
+        })
+        if (loop) {
+            childrens.push(
+                <div style={{ width: width + 'px' }} key={-1}>
+                    {children[0]}
+                </div>
+            )
+            childrens.unshift(
+                <div style={{ width: width + 'px' }} key={-2}>
+                    {children[children.length - 1]}
+                </div>
+            )
+        }
+        return childrens
+    }
     return (
         <div className={style.swiperContainer} style={{ width: width + 'px' }}
             onTouchMove={bindleTouchMove}
@@ -139,16 +190,10 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay }) => {
                     Object.assign(
                         transfromMove(),
                         transitionAnima(),
-                        { width: (children.length || 1) * width + 'px' })
+                        { width: (childrenLength || 1) * width + 'px' })
                 }
             >
-                {children.map((c, i) => {
-                    return (
-                        <div style={{ width: width + 'px' }} key={i}>
-                            {c}
-                        </div>
-                    )
-                })}
+                {_render(children)}
             </div>
         </div >
 
