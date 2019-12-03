@@ -11,7 +11,7 @@ const Main = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <SwiperTest autoplay={3000}>
+        <SwiperTest changeIndex={(e) => { console.log(e) }}>
           <div>swiper1</div>
           <div>swiper2</div>
         </SwiperTest>

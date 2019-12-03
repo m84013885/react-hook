@@ -1,17 +1,17 @@
 import style from './index.css'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 let timer = null
 
-const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true }) => {
+const SwiperTest = ({ children, width = window.outerWidth, autoplay = 86400000, loop = true, min = 10, changeIndex }) => {
     const childrenLength = loop ? children.length + 2 : children.length
     const [touchStart, setTouchStart] = useState(null)
-    const [touchEnd, setTouchEnd] = useState(null)
     const [touchMove, setTouchMove] = useState(null)
     const [touch, setTouch] = useState(0)
     const [animaOpen, setAnimaOpen] = useState(false)
     const [position, setPosition] = useState(loop ? -width : 0)
     const [index, setIndex] = useState(loop ? 1 : 0)
+    const [autoplayTime, setAutoplayTime] = useState(autoplay)
     const autoMove = () => {
         if (childrenLength - 1 !== index) {
             setIndex(index + 1)
@@ -61,7 +61,7 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true
     }
     const bindleTouchEnd = (e) => {
         setAutoplayTime(setAutoplayTime >= autoplay ? autoplayTime + 1 : autoplayTime - 1)
-        if (Math.abs(touch) > 10) {
+        if (Math.abs(touch) > min) {
             if ((touch < 0 && childrenLength - 1 !== index) || (touch > 0 && index !== 0)) {
                 move()
                 return
@@ -73,7 +73,7 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true
             setAnimaOpen(false)
         }, 200)
     }
-    const has3d = () => {
+    const has3d = useCallback(() => {
         if (!window.getComputedStyle) {
             return false
         }
@@ -98,7 +98,7 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true
         document.body.removeChild(el)
 
         return (has3d !== undefined && has3d.length > 0 && has3d !== "none")
-    }
+    }, [])
     const transfromMove = () => {
         if (has3d) {
             return {
@@ -137,8 +137,6 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true
             }
         }, [delay])
     }
-    // console.log(autoplay)
-    const [autoplayTime, setAutoplayTime] = useState(autoplay || 86400000)
     useInterval(() => {
         autoMove()
     }, autoplayTime)
@@ -156,6 +154,16 @@ const SwiperTest = ({ children, width = window.outerWidth, autoplay, loop = true
                 }, 200)
             }
         }
+    }, [index])
+    useEffect(() => {
+        if (loop) {
+            if (changeIndex && index !== children.length + 1 && index !== 0) {
+                changeIndex(index - 1)
+            }
+        } else {
+            changeIndex(index)
+        }
+
     }, [index])
     const _render = (children) => {
         const childrens = children.map((c, i) => {
