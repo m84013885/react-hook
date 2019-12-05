@@ -1,6 +1,7 @@
 .swiperContainer{
   position: relative;
   display: flex;
+  overflow: hidden;
   align-items: center;
 }
 .swiperContent{

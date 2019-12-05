@@ -11,10 +11,13 @@ const Main = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <SwiperTest changeIndex={(e) => { console.log(e) }}>
-          <div>swiper1</div>
-          <div>swiper2</div>
-        </SwiperTest>
+        <div className={style.test}>
+          <SwiperTest changeIndex={(e) => { console.log(e) }}>
+            <div>swiper1</div>
+            <div>swiper2</div>
+          </SwiperTest>
+        </div>
+
         {/* <SwiperItem>
           <div>21</div>
           <div>11</div>
