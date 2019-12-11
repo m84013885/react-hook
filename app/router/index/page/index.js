@@ -6,8 +6,13 @@ import SwiperItem from './components/swiper'
 import Mask from './components/mask'
 import SwiperTest from './components/swiperItem'
 
+import { useInterval } from '../../../utils/userHook'
+
 const Main = () => {
   const [mask, setMask] = useState('')
+  useInterval(()=>{
+    console.log(1)
+  },1000)
   return (
     <React.Fragment>
       <ScrollView>
