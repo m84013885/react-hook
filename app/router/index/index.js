@@ -4,6 +4,7 @@ import { render } from 'react-dom'
 
 import './index.css'
 import Main from './page'
+import '../../utils/resize'
 
 import './common/index.common.css'
 import './common/pace.min'

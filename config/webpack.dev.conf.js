@@ -8,7 +8,7 @@ const process = require('process')
 const nodeModuleDir = path.resolve(process.cwd(), 'node_module')
 const appDir = path.resolve(process.cwd(), 'app')
 const ip = require('ip')
-const port = 8078
+const port = 8087
 const host = ip.address()
 
 const { routers } = require('../router.json')

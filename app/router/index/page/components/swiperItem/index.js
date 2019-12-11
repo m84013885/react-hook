@@ -3,52 +3,46 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 let timer = null
 
-const SwiperTest = ({ children,  autoplay = 86400000, loop = true, min = 10, changeIndex }) => {
+const SwiperTest = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex }) => {
     const childrenLength = loop ? children.length + 2 : children.length
     const [swiperWidth, setSwiperWidth] = useState(0)
     const [touchStart, setTouchStart] = useState(null)
     const [touchMove, setTouchMove] = useState(null)
     const [touch, setTouch] = useState(0)
     const [animaOpen, setAnimaOpen] = useState(false)
-    const [position, setPosition] = useState(loop ? -swiperWidth : 0)
+    const [position, setPosition] = useState(0)
     const [index, setIndex] = useState(loop ? 1 : 0)
     const [autoplayTime, setAutoplayTime] = useState(autoplay)
+    const moveAdd = () => {
+        setIndex(index + 1)
+        setAnimaOpen(true)
+        setPosition(position - swiperWidth)
+        setTouch(0)
+        setTimeout(() => {
+            setAnimaOpen(false)
+        }, 200)
+    }
+    const moveMinus = () => {
+        setIndex(index - 1)
+        setAnimaOpen(true)
+        setPosition(position + swiperWidth)
+        setTouch(0)
+        setTimeout(() => {
+            setAnimaOpen(false)
+        }, 200)
+    }
     const autoMove = () => {
         if (childrenLength - 1 !== index) {
-            setIndex(index + 1)
-            setPosition(position - swiperWidth)
-            setAnimaOpen(true)
-            setTouch(0)
-            setTimeout(() => {
-                setAnimaOpen(false)
-            }, 200)
+            moveAdd()
         } else if (index !== 0) {
-            setIndex(index - 1)
-            setPosition(position + swiperWidth)
-            setAnimaOpen(true)
-            setTouch(0)
-            setTimeout(() => {
-                setAnimaOpen(false)
-            }, 200)
+            moveMinus()
         }
     }
     const move = () => {
         if (touch < 0 && childrenLength - 1 !== index) {
-            setIndex(index + 1)
-            setPosition(position - swiperWidth)
-            setAnimaOpen(true)
-            setTouch(0)
-            setTimeout(() => {
-                setAnimaOpen(false)
-            }, 200)
+            moveAdd()
         } else if (touch > 0 && index !== 0) {
-            setIndex(index - 1)
-            setPosition(position + swiperWidth)
-            setAnimaOpen(true)
-            setTouch(0)
-            setTimeout(() => {
-                setAnimaOpen(false)
-            }, 200)
+            moveMinus()
         }
     }
     const bindleTouchMove = (e) => {
@@ -74,6 +68,56 @@ const SwiperTest = ({ children,  autoplay = 86400000, loop = true, min = 10, cha
             setAnimaOpen(false)
         }, 200)
     }
+    const useInterval = (callback, delay) => {
+        const savedCallback = useRef()
+        // 保存新回调
+        useEffect(() => {
+            savedCallback.current = callback
+        })
+        // 建立 interval
+        useEffect(() => {
+            function tick() {
+                savedCallback.current()
+            }
+            if (delay !== null) {
+                timer = setInterval(tick, delay)
+                return () => clearInterval(timer)
+            }
+        }, [delay])
+    }
+    useInterval(() => {
+        autoMove()
+    }, autoplayTime)
+    useEffect(() => {
+        if (loop) {
+            if (index === 0) {
+                setTimeout(() => {
+                    setIndex(children.length)
+                    setPosition(-(swiperWidth * children.length))
+                }, 200)
+            } else if (index === children.length + 1) {
+                setTimeout(() => {
+                    setIndex(1)
+                    setPosition(-swiperWidth)
+                }, 200)
+            }
+        }
+    }, [index])
+    useEffect(() => {
+        if (loop) {
+            if (changeIndex && index !== children.length + 1 && index !== 0) {
+                changeIndex(index - 1)
+            }
+        } else {
+            changeIndex(index)
+        }
+
+    }, [index])
+    useEffect(() => {
+        if (loop) {
+            setPosition(-swiperWidth)
+        }
+    }, [swiperWidth])
     const has3d = useCallback(() => {
         if (!window.getComputedStyle) {
             return false
@@ -121,51 +165,6 @@ const SwiperTest = ({ children,  autoplay = 86400000, loop = true, min = 10, cha
             }
         }
     }
-    const useInterval = (callback, delay) => {
-        const savedCallback = useRef()
-        // 保存新回调
-        useEffect(() => {
-            savedCallback.current = callback
-        })
-        // 建立 interval
-        useEffect(() => {
-            function tick() {
-                savedCallback.current()
-            }
-            if (delay !== null) {
-                timer = setInterval(tick, delay)
-                return () => clearInterval(timer)
-            }
-        }, [delay])
-    }
-    useInterval(() => {
-        autoMove()
-    }, autoplayTime)
-    useEffect(() => {
-        if (loop) {
-            if (index === 0) {
-                setTimeout(() => {
-                    setIndex(children.length)
-                    setPosition(-(swiperWidth * children.length))
-                }, 200)
-            } else if (index === children.length + 1) {
-                setTimeout(() => {
-                    setIndex(1)
-                    setPosition(-swiperWidth)
-                }, 200)
-            }
-        }
-    }, [index])
-    useEffect(() => {
-        if (loop) {
-            if (changeIndex && index !== children.length + 1 && index !== 0) {
-                changeIndex(index - 1)
-            }
-        } else {
-            changeIndex(index)
-        }
-
-    }, [index])
     const _render = (children) => {
         const childrens = children.map((c, i) => {
             return (
