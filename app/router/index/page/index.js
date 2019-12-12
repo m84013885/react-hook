@@ -21,6 +21,7 @@ const Main = () => {
             <div>swiper1</div>
             <div>swiper2</div>
           </SwiperTest>
+          <div className={style.banner}></div>
         </div>
 
         {/* <SwiperItem>

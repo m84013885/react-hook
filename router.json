@@ -3,22 +3,6 @@
         {
             "name": "index",
             "template": "index"
-        },
-        {
-            "name": "test",
-            "template": "test"
-        },
-        {
-            "name": "circle",
-            "template": "circle"
-        },
-        {
-            "name": "example",
-            "template": "example"
-        },
-        {
-            "name": "anima",
-            "template": "anima"
         }
     ]
 }

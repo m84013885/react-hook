@@ -2,3 +2,8 @@
   width: 500rpx;
   height: 100rpx;
 }
+.banner{
+  width:750rpx;
+  height: 400rpx;
+  background-image: url(../../../images/banner.png);
+}

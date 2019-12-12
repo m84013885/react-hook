@@ -102,6 +102,29 @@ const config = webpackMerge(commonConfig, {
             // 和 JS / CSS 在统一路径下·
             publicPath: './'
           }
+        },{
+          loader: 'image-webpack-loader',
+          options: {
+            mozjpeg: {
+              progressive: true,
+              quality: 65
+            },
+            // optipng.enabled: false will disable optipng
+            optipng: {
+              enabled: false,
+            },
+            pngquant: {
+              quality: [0.65, 0.90],
+              speed: 4
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            // the webp option will enable WEBP
+            webp: {
+              quality: 75
+            }
+          }
         }],
         include: [appDir],
         exclude: [nodeModuleDir]
@@ -115,6 +138,29 @@ const config = webpackMerge(commonConfig, {
             outputPath: assestPathName,
             // 和 JS / CSS 在统一路径下·
             publicPath: assestPathName
+          }
+        },{
+          loader: 'image-webpack-loader',
+          options: {
+            mozjpeg: {
+              progressive: true,
+              quality: 65
+            },
+            // optipng.enabled: false will disable optipng
+            optipng: {
+              enabled: false,
+            },
+            pngquant: {
+              quality: [0.65, 0.90],
+              speed: 4
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            // the webp option will enable WEBP
+            webp: {
+              quality: 75
+            }
           }
         }],
         include: [appDir],
