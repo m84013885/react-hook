@@ -5,7 +5,7 @@ import Toast from './components/toast'
 import SwiperItem from './components/swiper'
 import Mask from './components/mask'
 import SwiperTest from './components/swiperItem'
-
+import axios from 'axios'
 import { useInterval } from '../../../utils/userHook'
 
 const Main = () => {
@@ -20,6 +20,15 @@ const Main = () => {
   window.testFun = () => {
     console.log(5)
   }
+  useEffect(() => {
+    axios.get('http://172.20.0.104:8099/user?ID=12345')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
   // useInterval(() => {
   //   console.log(1)
   // }, 1000)
