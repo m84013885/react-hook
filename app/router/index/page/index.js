@@ -9,19 +9,31 @@ import SwiperTest from './components/swiperItem'
 import { useInterval } from '../../../utils/userHook'
 
 const Main = () => {
+  function setCookie(key, value, d) {
+    if (d === undefined) {
+      document.cookie = encodeURIComponent(key) + "=" + encodeURIComponent(value);
+    } else {
+      document.cookie = encodeURIComponent(key) + "=" + encodeURIComponent(value) + ";max-age=" + (d * 60 * 60 * 24);
+    }
+  }
   const [mask, setMask] = useState('')
-  useInterval(()=>{
-    console.log(1)
-  },1000)
+  window.testFun = () => {
+    console.log(5)
+  }
+  // useInterval(() => {
+  //   console.log(1)
+  // }, 1000)
   return (
     <React.Fragment>
       <ScrollView>
-        <div className={style.test}>
+        <div className={style.test} onClick={() => { setCookie('test', 1, 1) }}>
           <SwiperTest changeIndex={(e) => { console.log(e) }}>
             <div>swiper1</div>
             <div>swiper2</div>
           </SwiperTest>
           <div className={style.banner}></div>
+          <iframe src="http://172.20.0.104:8078/index"></iframe>
+          <iframe src="https://jingyan.baidu.com/article/fea4511ab14efbb7bb912589.html"></iframe>
         </div>
 
         {/* <SwiperItem>
