@@ -6,7 +6,7 @@ import SwiperItem from './components/swiper'
 import Mask from './components/mask'
 import SwiperTest from './components/swiperItem'
 import axios from 'axios'
-import { useInterval } from '../../../utils/userHook'
+import { useInterval, useFetch } from '../../../utils/userHook'
 
 const Main = () => {
   function setCookie(key, value, d) {
@@ -21,6 +21,11 @@ const Main = () => {
     console.log(5)
   }
   useEffect(() => {
+    const test = async () => {
+      const res = await useFetch({ url: 'http://172.20.0.104:8099/' })
+      console.log(res)
+    }
+    test()
     axios.get('http://172.20.0.104:8099/user?ID=12345')
       .then(function (response) {
         console.log(response);

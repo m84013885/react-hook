@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
   console.log(req.method.toLowerCase(), parsedURL.path)
   // && parsedURL.path.split('?')[0] === '/live/one/list'
   if (req.method.toLowerCase() === 'get') {
-    let datas = fs.readFileSync('./data1.json')
+    let datas = fs.readFileSync('./server/data1.json')
     setTimeout(function () {
       res.statusCode = 200
       res.setHeader('Content-Type', 'application/json')
