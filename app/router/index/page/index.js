@@ -26,13 +26,6 @@ const Main = () => {
       console.log(res)
     }
     test()
-    axios.get('http://172.20.0.104:8099/user?ID=12345')
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }, [])
   // useInterval(() => {
   //   console.log(1)

@@ -2,7 +2,7 @@ import Content1 from './content1'
 import Content2 from './content2'
 import React, { useState, useEffect } from 'react'
 
-import { UserContext } from './createContent'
+import { UserContext } from '../../../utils/userHook'
 
 const Main = () => {
   // const UserContext = new createContext()

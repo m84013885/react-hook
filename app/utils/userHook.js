@@ -1,5 +1,5 @@
 import md5 from 'md5'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, createContext } from 'react'
 
 // 定时器
 export const useInterval = (callback, delay) => {
@@ -22,9 +22,10 @@ export const useInterval = (callback, delay) => {
     }, [delay])
 }
 
-const CREDS = 'include'
-const SALT = '' 
+export const UserContext = new createContext()
 
+const CREDS = 'include'
+const SALT = ''
 export const useFetch = async (obj) => {
     const checkStatus = (response) => {
         if (response.status >= 200 && response.status < 300) { return response }

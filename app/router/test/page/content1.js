@@ -1,16 +1,20 @@
-import React,{ useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
-import {UserContext} from './createContent'
+import { UserContext } from '../../../utils/userHook'
 
 const Content2 = () => {
-    const test = useContext(UserContext)
 
-    console.log(test)
+    const { number, setNumber } = useContext(UserContext)
+
+
+    useEffect(() => {
+        console.log(6)
+    }, [number])
 
     const handleOnClick = () => {
-        test.setNumber(4)
+        setNumber(number + 1)
     }
 
-    return <div onClick={handleOnClick}>{test.number}</div>
+    return <div onClick={handleOnClick}>{number}</div>
 }
 export default Content2
