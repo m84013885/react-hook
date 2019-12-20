@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './index.css'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 
 let timerStart = null
 let timerEnd = null
@@ -28,12 +28,17 @@ const Toast = () => {
       }, 3500)
     }
   }, [text])
-  return (
-    <div className={style.toast}>
-      <div className={`${style.text} ${anima ? style.up : style.down}`}>
-        {text}
+  const render = useCallback(() => {
+    return (
+      <div className={text === "" ? style.none : style.toast}>
+        <div className={`${style.text} ${anima ? style.up : style.down}`}>
+          {text}
+        </div>
       </div>
-    </div>
+    )
+  }, [anima])
+  return (
+    render()
   )
 }
 export default Toast

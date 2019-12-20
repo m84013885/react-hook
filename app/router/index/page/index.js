@@ -39,6 +39,7 @@ const Main = () => {
             <div>swiper2</div>
           </SwiperTest>
           <div className={style.banner}></div>
+          <div className={style.test1}></div>
           <iframe src="http://172.20.0.104:8078/index"></iframe>
           <iframe src="https://jingyan.baidu.com/article/fea4511ab14efbb7bb912589.html"></iframe>
         </div>

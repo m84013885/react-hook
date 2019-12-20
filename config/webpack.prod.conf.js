@@ -107,23 +107,23 @@ const config = webpackMerge(commonConfig, {
           options: {
             mozjpeg: {
               progressive: true,
-              quality: 65
+              quality: 85
             },
             // optipng.enabled: false will disable optipng
             optipng: {
-              enabled: false,
+              enabled: true,
             },
             pngquant: {
-              quality: [0.65, 0.90],
+              quality: [0.1, 0.2],
               speed: 4
             },
             gifsicle: {
               interlaced: false,
             },
             // the webp option will enable WEBP
-            webp: {
-              quality: 75
-            }
+            // webp: {
+            //   quality: 75
+            // }
           }
         }],
         include: [appDir],
@@ -151,16 +151,16 @@ const config = webpackMerge(commonConfig, {
               enabled: false,
             },
             pngquant: {
-              quality: [0.65, 0.90],
+              quality: [0.1, 0.2],
               speed: 4
             },
             gifsicle: {
               interlaced: false,
             },
             // the webp option will enable WEBP
-            webp: {
-              quality: 75
-            }
+            // webp: {
+            //   quality: 75
+            // }
           }
         }],
         include: [appDir],
