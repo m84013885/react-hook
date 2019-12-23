@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 let timer = null
 
-const SwiperTest = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex }) => {
+const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex }) => {
     const childrenLength = loop ? children.length + 2 : children.length
     const [swiperWidth, setSwiperWidth] = useState(0)
     const [touchStart, setTouchStart] = useState(null)
@@ -213,4 +213,4 @@ const SwiperTest = ({ children, autoplay = 86400000, loop = true, min = 10, chan
         </div >
     )
 }
-export default SwiperTest
+export default Swiper

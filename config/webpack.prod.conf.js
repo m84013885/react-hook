@@ -5,6 +5,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+const AssetsRelacePlugin = require('assets-replace-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
@@ -65,6 +66,9 @@ const config = webpackMerge(commonConfig, {
     new webpack.DefinePlugin({ __DEV__: 'false' }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: `${assestPathName}/[name].[chunkhash:5].css` }),
+    // new AssetsRelacePlugin([
+    //   path.resolve(process.cwd(), '../../../remix/templates/activity/christmasday2019/index.html')
+    // ]),
     new CopyPlugin([
       { from: path.resolve(process.cwd(), 'dll/dll.js'), to: path.join(outputPath, assestPathName) },
     ]),

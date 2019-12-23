@@ -1,11 +1,6 @@
 import style from './index.css'
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import ScrollView from './components/scroll'
-import Toast from './components/toast'
-import SwiperItem from './components/swiper'
-import Mask from './components/mask'
-import SwiperTest from './components/swiperItem'
-import axios from 'axios'
+import { ScrollView, Toast, Mask, Swiper } from './components'
 import { useInterval, useFetch } from '../../../utils/userHook'
 
 const Main = () => {
@@ -34,14 +29,17 @@ const Main = () => {
     <React.Fragment>
       <ScrollView>
         <div className={style.test} onClick={() => { setCookie('test', 1, 1) }}>
-          <SwiperTest changeIndex={(e) => { console.log(e) }}>
+          <Swiper>
             <div>swiper1</div>
             <div>swiper2</div>
-          </SwiperTest>
+          </Swiper>
           <div className={style.banner}></div>
           <div className={style.test1}></div>
-          <iframe src="http://172.20.0.104:8078/index"></iframe>
-          <iframe src="https://jingyan.baidu.com/article/fea4511ab14efbb7bb912589.html"></iframe>
+          <div className={style.container}>
+            <div className={style.wave}></div>
+          </div>
+          {/* <iframe src="http://172.20.0.104:8078/index"></iframe> */}
+          {/* <iframe src="https://jingyan.baidu.com/article/fea4511ab14efbb7bb912589.html"></iframe> */}
         </div>
 
         {/* <SwiperItem>

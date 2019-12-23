@@ -24,7 +24,7 @@ const config = webpackMerge(commonConfig, {
     historyApiFallback: true,
     proxy: {
       '/v1': {
-        target: 'http://www.app-remix.com',
+        target: 'https://test1.yuanbobo.com',
         changeOrigin: true
       }
     }

@@ -60,3 +60,74 @@
 
 ## 2019-6-21
 ### 创建react-hook的项目
+
+----
+### 完整demo
+```
+    const [mask, setMask] = useState('')
+    <React.Fragment>
+      <ScrollView>
+        <div>1</div>
+        <div>2</div>
+        ...
+      </ScrollView>
+      <Mask mask={mask} setMask={setMask}>
+        <div className={style.test}>1</div>
+      </Mask>
+      <Toast />
+    </React.Fragment>
+```
+
+### 组件
+
+## ScrollView组件
+内部封装better-scroll优化原生滚动，如有问题查看better-scroll文档。
+```
+    <ScrollView>
+        <div>1</div>
+        <div>2</div>
+        ...
+    </ScrollView>
+```
+----
+## mask组件
+封装了简单的弹出样式，以及弹出的方法。
+----
+```
+    const [mask, setMask] = useState('')    // 设定
+    <Mask mask={mask} setMask={setMask}>
+        <div>弹窗</div>
+    </Mask>
+    setMask(0)  //调用
+```
+| 参数名字 | 值类型 | 默认值  | 说明 |  是否必需 |
+|---------|---------|--------- |---------|---------|
+| mask | string |  '' | 状态 | 是 |
+| setMask | string | func | 控制状态 | 是 |
+----
+## swiper组件
+利用react-hook外加简单的css控制，制作一个简易的swiper组件。
+```
+    <Swiper 
+        autoplay={1000} 
+        loop={false} 
+        min={20} 
+        changeIndex={(e) => { console.log(e) }}
+    >
+        <div>1</div>
+        <div>2</div>
+    </Swiper>
+```
+| 参数名字 | 值类型 | 默认值  | 说明 |  是否必需 |
+|---------|---------|--------- |---------|---------|
+| autoplay | number | 86400000 | 自动切换时间 | 否 |
+| loop | bool | true | 让Swiper看起来是循环 | 否 |
+| min | number | 10 | 最小滑动距离(滑动大于此值时切换) | 否 |
+| changeIndex | func | null | 返回当前的index | 否 |
+----
+## Toast组件
+就是一个toast，简易的只显示文字的toast。
+```
+    <Toast/>
+    setToast('toast')  // 调用
+```
