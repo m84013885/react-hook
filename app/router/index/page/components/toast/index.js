@@ -30,11 +30,15 @@ const Toast = () => {
   }, [text])
   const render = useCallback(() => {
     return (
-      <div className={text === "" ? style.none : style.toast}>
-        <div className={`${style.text} ${anima ? style.up : style.down}`}>
-          {text}
+      <React.Fragment>
+        <div className={style.test}>123</div>
+        <div className={text === "" ? style.none : style.toast}>
+          <div className={`${style.text} ${anima ? style.up : style.down}`}>
+            {text}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
+
     )
   }, [anima])
   return (

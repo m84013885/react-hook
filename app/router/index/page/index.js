@@ -1,7 +1,11 @@
 import style from './index.css'
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { ScrollView, Toast, Mask, Swiper } from './components'
+import { ScrollView, Toast, Swiper, Mask } from './components'
 import { useInterval, useFetch } from '../../../utils/userHook'
+// import {Mask} from './components/mask'
+// import ScrollView from './components/scroll'
+// import Toast from './components/toast/index'
+// import Swiper from './components/swiperItem'
 
 const Main = () => {
   function setCookie(key, value, d) {

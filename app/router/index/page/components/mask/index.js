@@ -1,6 +1,5 @@
 import style from './index.css'
 import React, { useState } from 'react'
-
 const Mask = (state) => {
   const { mask, setMask, children } = state
   const renderContent = () => {

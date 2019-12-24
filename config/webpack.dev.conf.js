@@ -37,7 +37,14 @@ const config = webpackMerge(commonConfig, {
     rules: [
       {
         test: new RegExp(`^(?!.*\\.common).*\\.css`),
-        use: ['style-loader', {
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              injectType: 'singletonStyleTag'
+            },
+          },
+          {
           loader: 'css-loader',
           options: {
             modules: {

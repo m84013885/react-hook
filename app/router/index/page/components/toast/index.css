@@ -34,3 +34,6 @@
   from { transform: scale(1,1); }
   to { transform: scale(0,0);}
 }
+.test{
+  color: #333333;
+}
