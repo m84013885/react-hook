@@ -15,7 +15,7 @@ const Main = () => {
       document.cookie = encodeURIComponent(key) + "=" + encodeURIComponent(value) + ";max-age=" + (d * 60 * 60 * 24);
     }
   }
-  const [mask, setMask] = useState(0)
+  const [mask, setMask] = useState('')
   window.testFun = () => {
     console.log(5)
   }
@@ -37,11 +37,11 @@ const Main = () => {
             <div>swiper1</div>
             <div>swiper2</div>
           </Swiper>
-          <div className={style.banner}></div>
+          {/* <div className={style.banner}></div>
           <div className={style.test1}></div>
           <div className={style.container}>
             <div className={style.wave}></div>
-          </div>
+          </div> */}
         </div>
       </ScrollView>
       <Mask mask={mask} setMask={setMask}>
