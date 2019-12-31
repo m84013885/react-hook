@@ -6,13 +6,17 @@ const Mask = (state) => {
     if (children.length) {
       return (
         <div className={`${show ? style.big : style.small}`}>
-          {children[mask]}
+          <div className={style.child}>
+            {children[mask]}
+          </div>
         </div>
       )
     } else {
       return (
         <div className={`${show ? style.big : style.small}`}>
-          {children}
+          <div className={style.child}>
+            {children}
+          </div>
         </div>
       )
     }

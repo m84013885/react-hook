@@ -15,17 +15,17 @@ const Main = () => {
       document.cookie = encodeURIComponent(key) + "=" + encodeURIComponent(value) + ";max-age=" + (d * 60 * 60 * 24);
     }
   }
-  const [mask, setMask] = useState('')
+  const [mask, setMask] = useState(0)
   window.testFun = () => {
     console.log(5)
   }
-  useEffect(() => {
-    const test = async () => {
-      const res = await useFetch({ url: 'http://172.20.0.104:8099/' })
-      console.log(res)
-    }
-    test()
-  }, [])
+  // useEffect(() => {
+  //   const test = async () => {
+  //     const res = await useFetch({ url: 'http://172.20.0.104:8099/' })
+  //     console.log(res)
+  //   }
+  //   test()
+  // }, [])
   // useInterval(() => {
   //   console.log(1)
   // }, 1000)
@@ -42,46 +42,7 @@ const Main = () => {
           <div className={style.container}>
             <div className={style.wave}></div>
           </div>
-          {/* <iframe src="http://172.20.0.104:8078/index"></iframe> */}
-          {/* <iframe src="https://jingyan.baidu.com/article/fea4511ab14efbb7bb912589.html"></iframe> */}
         </div>
-
-        {/* <SwiperItem>
-          <div>21</div>
-          <div>11</div>
-        </SwiperItem> */}
-        {/* <div className={'none'}>123</div>
-        <SwiperItem>
-          <div>21</div>
-          <div>11</div>
-          <div>{swiperNum}</div>
-        </SwiperItem>
-        <div onClick={() => { setMask(1) }}>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div>
-        <div>3</div> */}
       </ScrollView>
       <Mask mask={mask} setMask={setMask}>
         <div className={style.test}>1</div>

@@ -31,7 +31,6 @@ const Toast = () => {
   const render = useCallback(() => {
     return (
       <React.Fragment>
-        <div className={style.test}>123</div>
         <div className={text === "" ? style.none : style.toast}>
           <div className={`${style.text} ${anima ? style.up : style.down}`}>
             {text}
