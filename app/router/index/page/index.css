@@ -1,7 +1,10 @@
 .test{
-  width: 500rpx;
+  display: flex;
+  /* overflow: hidden; */
+  /* width: 500rpx; */
   height: 100rpx;
   background-color: #ffffff;
+  white-space: nowrap;
 }
 .banner{
   width:750rpx;
@@ -55,4 +58,14 @@
   } 100% {
       transform: translate(-50%, -70%) rotate(360deg);
   }
+}
+.asd{
+  width: 500rpx;
+  height: 100rpx;
+  background-color: #dddddd;
+}
+.asd1{
+  width: 500rpx;
+  height: 100rpx;
+  background-color: #333333;
 }

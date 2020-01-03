@@ -33,16 +33,19 @@ const Main = () => {
     <React.Fragment>
       <ScrollView>
         <div className={style.test} onClick={() => { setCookie('test', 1, 1) }}>
-          <Swiper>
+          <div className={style.asd}></div>
+          <div className={style.asd1}></div>
+          {/* <Swiper>
             <div>swiper1</div>
             <div>swiper2</div>
-          </Swiper>
+          </Swiper> */}
           {/* <div className={style.banner}></div>
           <div className={style.test1}></div>
           <div className={style.container}>
             <div className={style.wave}></div>
           </div> */}
         </div>
+        <div className={style.asd}></div>
       </ScrollView>
       <Mask mask={mask} setMask={setMask}>
         <div className={style.test}>1</div>

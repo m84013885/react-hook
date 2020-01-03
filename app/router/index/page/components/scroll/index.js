@@ -9,8 +9,8 @@ const ScrollView = ((props) => {
     useEffect(() => {
         if (bScroll) return
         const scroll = new BScroll(scrollContaninerRef.current, {
-            scrollX: false,
-            scrollY: true,
+            scrollX: true,
+            scrollY: false,
             click: true,
             tap:true,
             bounce: {
