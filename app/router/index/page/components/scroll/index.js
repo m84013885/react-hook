@@ -1,18 +1,17 @@
-import React,{ useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import BScroll from "better-scroll"
 import style from './index.css'
 
-const ScrollView = ((props) => {
+const ScrollView = ({ children, direction }) => {
     const [bScroll, setBScroll] = useState()
     const scrollContaninerRef = useRef(null)
-
     useEffect(() => {
         if (bScroll) return
         const scroll = new BScroll(scrollContaninerRef.current, {
-            scrollX: true,
-            scrollY: false,
+            scrollX: direction && direction.toLowerCase() === 'x' ? true : false,
+            scrollY: direction && direction.toLowerCase() === 'x' ? false : true,
             click: true,
-            tap:true,
+            tap: true,
             bounce: {
                 top: true,
                 bottom: true
@@ -31,12 +30,12 @@ const ScrollView = ((props) => {
         }
     }, [])
     return (
-        <div className={style.scrollStyle} ref={scrollContaninerRef}>
+        <div className={direction && direction.toLowerCase() === 'x' ? style.scrollStyleX : style.scrollStyleY} ref={scrollContaninerRef}>
             <div>
-                {props.children}
+                {children}
             </div>
         </div>
     )
-})
+}
 
 export default ScrollView
