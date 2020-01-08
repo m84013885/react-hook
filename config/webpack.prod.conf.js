@@ -106,7 +106,7 @@ const config = webpackMerge(commonConfig, {
             // 和 JS / CSS 在统一路径下·
             publicPath: './'
           }
-        },{
+        }, {
           loader: 'image-webpack-loader',
           options: {
             mozjpeg: {
@@ -143,7 +143,7 @@ const config = webpackMerge(commonConfig, {
             // 和 JS / CSS 在统一路径下·
             publicPath: assestPathName
           }
-        },{
+        }, {
           loader: 'image-webpack-loader',
           options: {
             mozjpeg: {
@@ -170,6 +170,17 @@ const config = webpackMerge(commonConfig, {
         include: [appDir],
         exclude: [nodeModuleDir]
       },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: assestPathName,
+            // 和 JS / CSS 在统一路径下·
+            publicPath: './'
+          }
+        }]
+      }
     ]
   }
 })

@@ -65,6 +65,10 @@ const config = webpackMerge(commonConfig, {
         }],
         include: [appDir],
         exclude: [nodeModuleDir]
+      },
+      {
+        test:/\.(ttf|eot|woff|woff2)$/,
+        use:['file-loader']
       }
     ]
   }
