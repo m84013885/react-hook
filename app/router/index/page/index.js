@@ -10,6 +10,12 @@ const Main = () => {
       <ScrollView>
         <div className={style.asd2}></div>
         <div className={style.asd}></div>
+        <Swiper noTouch={true}>
+          <div>1</div>
+          <div>1</div>
+          <div>1</div>
+          <div>1</div>
+        </Swiper>
       </ScrollView>
       <Mask mask={mask} setMask={setMask}>
         <div className={style.test}>1</div>

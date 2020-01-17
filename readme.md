@@ -1,3 +1,7 @@
+## 2020-1-17
+### swiper增加noTouch参数
+### 增加全局参数fetchLoading
+
 ## 2020-1-6
 ### scroll组件新增可以选择横或者竖
 
@@ -137,6 +141,7 @@
 | loop | bool | true | 让Swiper看起来是循环 | 否 |
 | min | number | 10 | 最小滑动距离(滑动大于此值时切换) | 否 |
 | changeIndex | func | null | 返回当前的index | 否 |
+| noTouch | bool | false | 禁止触碰 | 否 |
 ----
 ## Toast组件
 就是一个toast，简易的只显示文字的toast。

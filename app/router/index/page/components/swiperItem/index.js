@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 let timer = null
 
-const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex }) => {
+const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex, noTouch = false }) => {
     const childrenLength = loop ? children.length + 2 : children.length
     const [swiperWidth, setSwiperWidth] = useState(0)
     const [touchStart, setTouchStart] = useState(null)
@@ -204,13 +204,16 @@ const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIn
         }
     }
     return (
-        <div className={style.swiperContainer} ref={(e) => { e && setSwiperWidth(parseInt(window.getComputedStyle(e).width)) }}
-            onTouchMove={bindleTouchMove}
-            onTouchStart={bindleTouchStart}
-            onTouchEnd={bindleTouchEnd}
-        >
-            {_renderSwiper()}
-        </div >
+        <div className={style.main}>
+            <div className={noTouch ? style.bg : style.none}></div>
+            <div className={style.swiperContainer} ref={(e) => { e && setSwiperWidth(parseInt(window.getComputedStyle(e).width)) }}
+                onTouchMove={bindleTouchMove}
+                onTouchStart={bindleTouchStart}
+                onTouchEnd={bindleTouchEnd}
+            >
+                {_renderSwiper()}
+            </div >
+        </div>
     )
 }
 export default Swiper
