@@ -1,3 +1,6 @@
+## 2020-1-19
+### swiper增加init参数（表示一开始进入是从第几个开始）
+
 ## 2020-1-17
 ### swiper增加noTouch参数
 ### 增加全局参数fetchLoading
@@ -142,6 +145,7 @@
 | min | number | 10 | 最小滑动距离(滑动大于此值时切换) | 否 |
 | changeIndex | func | null | 返回当前的index | 否 |
 | noTouch | bool | false | 禁止触碰 | 否 |
+| init | number | 1 | 禁止触碰 | 否 |
 ----
 ## Toast组件
 就是一个toast，简易的只显示文字的toast。

@@ -2,8 +2,9 @@ import style from './index.css'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 let timer = null
+let init = 0
 
-const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex, noTouch = false }) => {
+const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex, noTouch = false, init = 2 }) => {
     const childrenLength = loop ? children.length + 2 : children.length
     const [swiperWidth, setSwiperWidth] = useState(0)
     const [touchStart, setTouchStart] = useState(null)
@@ -89,6 +90,7 @@ const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIn
         autoMove()
     }, autoplayTime)
     useEffect(() => {
+        console.log(index)
         if (loop) {
             if (index === 0) {
                 setTimeout(() => {
@@ -115,7 +117,8 @@ const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIn
     }, [index])
     useEffect(() => {
         if (loop) {
-            setPosition(-swiperWidth)
+            setPosition(-(swiperWidth * init))
+            setIndex(init)
         }
     }, [swiperWidth])
     const has3d = useCallback(() => {
