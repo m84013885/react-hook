@@ -7,7 +7,7 @@ const Main = () => {
   const [mask, setMask] = useState('')
   return (
     <React.Fragment>
-      <ScrollView>
+      {/* <ScrollView>
         <div className={style.asd2}></div>
         <div className={style.asd}></div>
         <Swiper>
@@ -16,7 +16,12 @@ const Main = () => {
           <div>3</div>
           <div>4</div>
         </Swiper>
-      </ScrollView>
+      </ScrollView> */}
+      <div className={style.c}>
+        <div className={style.a1}></div>
+        <div className={style.a2}></div>
+        <div className={style.a3}></div>
+      </div>
       <Mask mask={mask} setMask={setMask}>
         <div className={style.test}>1</div>
       </Mask>

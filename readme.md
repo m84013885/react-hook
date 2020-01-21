@@ -1,3 +1,7 @@
+## 2020-1-21
+### 新增全局参数rem
+### 整理文档
+
 ## 2020-1-19
 ### swiper增加init参数（表示一开始进入是从第几个开始）
 
@@ -79,6 +83,8 @@
 ### 创建react-hook的项目
 
 ----
+#### 注意目前共有三个全局参数：rem、fetchLoading、setToast
+
 ### 完整demo
 ```
     const [mask, setMask] = useState('')
