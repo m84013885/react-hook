@@ -7,8 +7,6 @@ import Main from './page'
 import '../../utils/resize'
 
 import './common/index.common.css'
-import './common/pace.min'
-import './common/pace.common.css'
 import './common/swiper.min'
 import './common/swiper.common.css'
 
