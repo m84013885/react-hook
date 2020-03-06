@@ -3,30 +3,46 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { ScrollView, Toast, Swiper, Mask } from './components'
 import { useInterval, useFetch } from '../../../utils/userHook'
 
+let init = true
+
 const Main = () => {
-  const [mask, setMask] = useState('')
+  const renderArr = () => {
+    const arr = []
+    for (let i = 0; i < 10; i++) {
+      const arr1 = []
+      for (let j = 0; j < 10; j++) {
+        arr1.push(parseInt(Math.random() * (3) + 1))
+      }
+      arr.push(arr1)
+    }
+    console.log(arr)
+  }
+  renderArr()
+  const renderBlocks = () => {
+    const arr = []
+    for (let i = 0; i < 90; i++) {
+      const color = parseInt(Math.random() * (3) + 1)
+      let player = ''
+      if (init && color !== 2) {
+        player = <div className={style.player}></div>
+        init = false
+      }
+      arr.push(
+        <div className={style['block' + color]} key={i}>
+          {player}
+        </div>
+      )
+    }
+    return arr
+  }
   return (
-    <React.Fragment>
-      {/* <ScrollView>
-        <div className={style.asd2}></div>
-        <div className={style.asd}></div>
-        <Swiper>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-        </Swiper>
-      </ScrollView> */}
-      <div className={style.c}>
-        <div className={style.a1}></div>
-        <div className={style.a2}></div>
-        <div className={style.a3}></div>
+    <div className={style.moveMain}>
+      <div className={style.blockBox}>
+        {renderBlocks()}
       </div>
-      <Mask mask={mask} setMask={setMask}>
-        <div className={style.test}>1</div>
-      </Mask>
-      <Toast />
-    </React.Fragment>
+    </div>
+
+
 
   )
 }
