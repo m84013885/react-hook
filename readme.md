@@ -1,3 +1,6 @@
+## 2020-3-4
+### 默认载入babel-polyfill（增加兼容性）
+
 ## 2020-3-2
 ### 精简一下，去掉pace（pace进度条有兼容性的问题，vivo-android低版本有问题）
 ### 删掉react-simple-animate动画库，真的还不如直接用css动画（原理和各方面都就是css动画）
