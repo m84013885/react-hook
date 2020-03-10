@@ -82,6 +82,7 @@ routers.map((item) => {
   const plugin = new HtmlWebpackPlugin({
     filename: `${template}`,
     title: '/dll.js',
+    babel: '/polyfill.min.js',
     template: tempSrc,
     inject: true,
     chunks: [template]

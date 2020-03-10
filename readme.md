@@ -1,3 +1,6 @@
+## 2020-3-10
+### 直接外部引入polyfill.min，删掉babel-polyfill
+
 ## 2020-3-4
 ### 默认载入babel-polyfill（增加兼容性）
 

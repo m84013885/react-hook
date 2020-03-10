@@ -7,30 +7,7 @@
 .blockBox{
   display: flex;
   flex-wrap: wrap;
-  width: 1500rpx;
-}
-.block{
-  width: 75rpx;
-  height: 75rpx;
-
-}
-.block1{
-  background-color: #dddddd;
-
-  composes:block;
-}
-.block2{
-  background-color: #333333;
-
-  composes:block;
-}
-.block3{
-  background-color: #eeeeee;
-
-  composes:block;
-}
-.player{
-  width: 100%;
+  width: 750rpx;
   height: 100%;
-  background-color: aquamarine;
+  background-color: #dddddd;
 }

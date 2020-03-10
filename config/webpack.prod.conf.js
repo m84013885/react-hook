@@ -40,27 +40,27 @@ const config = webpackMerge(commonConfig, {
       }),
       new OptimizeCSSAssetsPlugin({})
     ],
-    runtimeChunk: { name: () => { return 'manifest' } },
-    splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      cacheGroups: {
-        default: {
-          name: 'globals',
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        },
-        vendors: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        }
-      }
-    }
+    // runtimeChunk: { name: () => { return 'manifest' } },
+    // splitChunks: {
+    //   chunks: 'all',
+    //   minSize: 30000,
+    //   minChunks: 1,
+    //   maxAsyncRequests: 5,
+    //   maxInitialRequests: 3,
+    //   cacheGroups: {
+    //     default: {
+    //       name: 'globals',
+    //       minChunks: 2,
+    //       priority: -20,
+    //       reuseExistingChunk: true
+    //     },
+    //     vendors: {
+    //       name: 'vendors',
+    //       test: /[\\/]node_modules[\\/]/,
+    //       priority: -10
+    //     }
+    //   }
+    // }
   },
   plugins: [
     new webpack.DefinePlugin({ __DEV__: 'false' }),
@@ -193,6 +193,7 @@ routers.map((item) => {
   const plugin = new HtmlWebpackPlugin({
     filename: `${template}.html`,
     title: `${assestPathName}/dll.js`,
+    babel: `${assestPathName}/polyfill.min.js`,
     template: tempSrc,
     inject: true,
     chunks: ['manifest', 'vendors', template]
