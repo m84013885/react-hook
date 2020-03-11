@@ -71,6 +71,7 @@ const config = webpackMerge(commonConfig, {
     // ]),
     new CopyPlugin([
       { from: path.resolve(process.cwd(), 'dll/dll.js'), to: path.join(outputPath, assestPathName) },
+      { from: path.resolve(process.cwd(), 'dll/polyfill.min.js'), to: path.join(outputPath, assestPathName) },
     ]),
     new InlineManifestWebpackPlugin('manifest')
   ],

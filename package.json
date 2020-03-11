@@ -7,7 +7,7 @@
     "dll": "webpack --env.NODE_ENV=dll",
     "dep": "webpack --env.NODE_ENV=production --progress",
     "dev": "webpack-dev-server --env.NODE_ENV=development --progress",
-    "server": "nodemon --inspect ./server/app.js 8099"
+    "server": "nodemon --inspect ./server/app.js 8087"
   },
   "author": "",
   "license": "ISC",

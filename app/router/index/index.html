@@ -10,6 +10,11 @@
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>demo</title>
+  <script>
+    window.onerror = function (message, source, lineno, colno, error) {
+      document.body.innerHTML = "<div>" + message + "</div>" + "<div>" + source + "</div>" + "<div>" + lineno + "</div>" + "<div>" + colno + "</div>" + "<div>" + error + "</div>"
+    }
+  </script>
 </head>
 
 <body>
