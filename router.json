@@ -3,10 +3,6 @@
         {
             "name": "index",
             "template": "index"
-        },
-        {
-            "name": "test",
-            "template": "test"
         }
     ]
 }
