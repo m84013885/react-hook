@@ -2,7 +2,6 @@ import style from './index.css'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 let timer = null
-let init = 0
 
 const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIndex, noTouch = false, init = 2 }) => {
     const childrenLength = loop ? children.length + 2 : children.length
@@ -90,7 +89,6 @@ const Swiper = ({ children, autoplay = 86400000, loop = true, min = 10, changeIn
         autoMove()
     }, autoplayTime)
     useEffect(() => {
-        console.log(index)
         if (loop) {
             if (index === 0) {
                 setTimeout(() => {

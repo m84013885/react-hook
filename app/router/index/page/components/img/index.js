@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const Img = ({ className }) => {
     const [dom, setDom] = useState(null)
-    const [imgStyle, setImgStyle] = useState({ height: '1rem' })
+    const [imgStyle, setImgStyle] = useState(null)
     const setImg = (callback, bg) => {
         const img = new Image()
         img.src = bg
