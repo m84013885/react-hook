@@ -2,7 +2,7 @@ import md5 from 'md5'
 import { useEffect, useRef, createContext } from 'react'
 
 window.fetchLoading = false
-
+window.allTimer = []
 // 定时器
 export const useInterval = (callback, delay) => {
     const savedCallback = useRef()
@@ -18,8 +18,7 @@ export const useInterval = (callback, delay) => {
             savedCallback.current()
         }
         if (delay !== null) {
-            setInterval(tick, delay)
-            return () => clearInterval()
+            allTimer.push(setInterval(tick, delay))
         }
     }, [delay])
 }
@@ -84,17 +83,17 @@ export const useFetch = async (obj) => {
     const credentials = obj.credentials || CREDS
     const data = obj.body || null
     let confFetch = { method, credentials }
-    if (fetchLoading){
+    if (fetchLoading) {
         return false
-    } 
+    }
     if (method === 'POST') { confFetch = { method, credentials, body: JSON.stringify(data) } }
     return new Promise(function (resolve, reject) {
         fetch(url, confFetch)
             .then(checkStatus)
             .then(res => res.json())
-            .then(res => { 
+            .then(res => {
                 window.fetchLoading = false
-                resolve(res) 
+                resolve(res)
             })
             .catch(err => { reject(err) })
     })

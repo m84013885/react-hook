@@ -1,3 +1,6 @@
+## 2020-4-3
+### 为了useInterval新增全局参数allTimer,方便停止定时器
+
 ## 2020-3-18
 ### 保留两种postcss的配置（一个vw适配方案和rem的适配方案）
 ### vw方案有px自动转vw，而rpx自动转rem的方案
@@ -102,7 +105,7 @@
 ### 创建react-hook的项目
 
 ----
-#### 注意目前共有三个全局参数：rem、fetchLoading、setToast
+#### 注意目前共有四个全局参数：rem、fetchLoading、setToast,allTimer
 
 ### 完整demo
 ```
