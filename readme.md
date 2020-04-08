@@ -1,3 +1,6 @@
+## 2020-4-8
+### mask组件，在外层操作关闭的话没有动画的问题。新增maskAnima和setMaskAnima两个参数解决这个问题
+
 ## 2020-4-3
 ### 为了useInterval新增全局参数allTimer,方便停止定时器
 
@@ -151,7 +154,9 @@
 | 参数名字 | 值类型 | 默认值  | 说明 |  是否必需 |
 |---------|---------|--------- |---------|---------|
 | mask | string |  '' | 状态 | 是 |
-| setMask | string | func | 控制状态 | 是 |
+| setMask | func | func | 控制状态 | 是 |
+| maskAnima | bool | null | 控制状态 | 否 |
+| setMaskAnima | func | null | 控制状态 | 否 |
 ----
 ## swiper组件
 利用react-hook外加简单的css控制，制作一个简易的swiper组件。

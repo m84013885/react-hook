@@ -5,7 +5,8 @@ import { useInterval, useFetch } from '../../../utils/userHook'
 console.log(style)
 
 const Main = () => {
-
+  const [mask, setMask] = useState(0)
+  const [maskAnima, setMaskAnima] = useState(true)
   useEffect(() => {
     const total = []
     for (let i = 0; i < 2; i++) {
@@ -24,8 +25,12 @@ const Main = () => {
 
   return (
     <div className={style.moveMain}>
-      <div className={style.blockBox}>
-
+      <div className={style.blockBox} onClick={() => { setMask(0) }}>
+        <Mask mask={mask} setMask={setMask}>
+          <div className={style.box}>
+            <div className={style.button} onClick={() => { setOutShow(false) }}></div>
+          </div>
+        </Mask>
       </div>
     </div>
 
