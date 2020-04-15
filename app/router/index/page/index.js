@@ -5,17 +5,17 @@ import { useInterval, useFetch } from '../../../utils/userHook'
 console.log(style)
 
 const Main = () => {
-  const [mask, setMask] = useState(0)
+  const [mask, setMask] = useState('')
   const [maskAnima, setMaskAnima] = useState(true)
   useEffect(() => {
     const total = []
-    for (let i = 0; i < 2; i++) {
-      for (let j = 0; j < 2; j++) {
-        for (let k = 0; k < 2; k++) {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        for (let k = 0; k < 3; k++) {
           const arr1 = []
-          arr1.push(i === 0 ? 's' : 'f')
-          arr1.push(j === 0 ? 's' : 'f')
-          arr1.push(k === 0 ? 's' : 'f')
+          arr1.push(i === 0 ? 0 : 100)
+          arr1.push(j === 0 ? 0 : 100)
+          arr1.push(k === 0 ? 0 : 100)
           total.push(arr1)
         }
       }
@@ -31,6 +31,7 @@ const Main = () => {
             <div className={style.button} onClick={() => { setOutShow(false) }}></div>
           </div>
         </Mask>
+        <Toast />
       </div>
     </div>
 

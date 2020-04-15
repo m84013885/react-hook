@@ -39,7 +39,7 @@ const Toast = () => {
       </React.Fragment>
 
     )
-  }, [anima])
+  }, [anima, text])
   return (
     render()
   )
