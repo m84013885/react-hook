@@ -7,6 +7,7 @@ console.log(style)
 const Main = () => {
   const [mask, setMask] = useState('')
   const [maskAnima, setMaskAnima] = useState(true)
+  const [testn, setTestn] = useState(1)
   useEffect(() => {
     const total = []
     for (let i = 0; i < 3; i++) {
@@ -22,10 +23,17 @@ const Main = () => {
     }
     console.log(JSON.stringify(total))
   }, [])
-
+  useEffect(() => {
+    if (testn < 15) {
+      setTimeout(() => {
+        setTestn(testn + 1)
+      }, 50)
+    }
+  }, [testn])
   return (
     <div className={style.moveMain}>
       <div className={style.blockBox} onClick={() => { setMask(0) }}>
+        <div>{testn}</div>
         <Mask mask={mask} setMask={setMask}>
           <div className={style.box}>
             <div className={style.button} onClick={() => { setOutShow(false) }}></div>
