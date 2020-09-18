@@ -32,8 +32,13 @@ const Main = () => {
   }, [testn])
   return (
     <div className={style.moveMain}>
+      <Swiper>
+        <div>123</div>
+        <div>125</div>
+      </Swiper>
       <div className={style.blockBox} onClick={() => { setMask(0) }}>
         <div>{testn}</div>
+
         <Mask mask={mask} setMask={setMask}>
           <div className={style.box}>
             <div className={style.button} onClick={() => { setOutShow(false) }}></div>
