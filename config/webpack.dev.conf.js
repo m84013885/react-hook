@@ -58,7 +58,7 @@ const config = webpackMerge(commonConfig, {
         exclude: [nodeModuleDir]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|mp4)$/,
         use: [{
           loader: 'url-loader',
           options: { limit: 2500 }
