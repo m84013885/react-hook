@@ -5,17 +5,14 @@ import { useInterval, useFetch } from '../../../utils/userHook'
 console.log(style)
 
 import Videx from './video'
-
-const config = require('./video/vapc.json')
 const demo = require('./video/482715dbbcc.mp4')
-import Vap from 'video-animation-player'
+
 let dom = null
 
 const Main = () => {
   const [mask, setMask] = useState('')
   const [maskAnima, setMaskAnima] = useState(true)
   const [testn, setTestn] = useState(1)
-  const [play, setPlay] = useState(true)
   useEffect(() => {
     const total = []
     for (let i = 0; i < 3; i++) {
@@ -38,30 +35,9 @@ const Main = () => {
       }, 50)
     }
   }, [testn])
-  useEffect(() => {
-    if (dom && play) {
-      new Vap({
-        container: dom,
-        // 素材视频链接
-        src: demo.default,
-        // 素材配置json对象
-        config: config,
-        width: 375,
-        height: 667,
-        // 同素材生成工具中配置的保持一致
-        fps: 25
-      })
-        .on('playing', () => {
-          console.log('playing')
-        })
-        .on('ended', () => {
-          console.log('play ended')
-        })
-    }
-  }, [play])
   return (
     <div className={style.moveMain}>
-      <div ref={(c) => { dom = c }}></div>
+      <Videx play={true} />
       <Swiper>
         <div>123</div>
         <div>125</div>
