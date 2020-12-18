@@ -3,6 +3,10 @@
         {
             "name": "index",
             "template": "index"
+        },
+        {
+            "name":"tencent",
+            "template": "tencent"
         }
     ]
 }
