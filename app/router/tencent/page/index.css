@@ -1,0 +1,33 @@
+
+
+
+
+@media screen and (orientation: landscape) {
+
+}
+
+.main{
+  display: flex;  
+  flex-wrap: wrap;
+}
+
+header{
+  width: 370rpx;
+  height: 198rpx;
+}
+nav{
+  width: 370rpx;
+  height: 416rpx;
+}
+aside{
+  flex: 1;
+  width: 370rpx;
+  height: 72rpx;
+}
+footer{
+  height: 68rpx;
+}
+main{
+  flex: 1;
+  height:712rpx;
+}
